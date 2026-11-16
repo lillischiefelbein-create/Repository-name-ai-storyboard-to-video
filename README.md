@@ -31,12 +31,45 @@
 
 ## 安装到 Codex
 
-将本仓库下载到本机，在 Codex 技能目录放置整个项目文件夹，并确保其中存在 SKILL.md。示例：
+### 方法一：让 Codex 自动安装（推荐）
 
-    mkdir -p ~/.codex/skills
-    cp -R Repository-name-ai-storyboard-to-video ~/.codex/skills/影视前期视觉资产管理Skill
+在 Codex 对话框中输入：
 
-打开 Codex 后要求使用“影视前期视觉资产管理”技能。当前只可用离线数据验证流程，不会在缺少授权时自动操作真实平台。
+```text
+$skill-installer 请从这个公开 GitHub 仓库安装技能：
+https://github.com/lillischiefelbein-create/Repository-name-ai-storyboard-to-video
+
+技能入口在仓库根目录 SKILL.md。
+请安装到我的个人技能目录，完成后检查是否可以使用。
+```
+
+Codex 内置的技能安装器支持从其他公开 GitHub 仓库安装技能。安装失败时，可改用下面的手动方法。
+
+### 方法二：使用终端手动安装
+
+在 macOS、Linux 或可使用 Bash 的环境中运行：
+
+```bash
+mkdir -p ~/.agents/skills
+git clone https://github.com/lillischiefelbein-create/Repository-name-ai-storyboard-to-video.git ~/.agents/skills/visual-asset-management
+```
+
+安装后的目录必须包含 `~/.agents/skills/visual-asset-management/SKILL.md`。
+
+Windows PowerShell 示例：
+
+```powershell
+New-Item -ItemType Directory -Force "$HOME\.agents\skills" | Out-Null
+git clone https://github.com/lillischiefelbein-create/Repository-name-ai-storyboard-to-video.git "$HOME\.agents\skills\visual-asset-management"
+```
+
+在 Codex 内输入 `/skills` 查看已安装技能，或在提问中输入 `$visual-asset-management` 明确启用。如果未显示，请重启 Codex。
+
+如果只希望在一个工程中使用，可将文件夹复制到该工程的 `.agents/skills/visual-asset-management`。
+
+### 注意
+
+**安装成功不等于已经实现飞书实时同步和自动出图。** 0.1.0 是可供 Codex 阅读、运行离线流程和后续扩展的基础技能。完整运行前需要使用者自行合法申请飞书应用权限、图片模型 API、参考素材访问授权和后台任务调度，不共享作者的 API 密钥。
 
 ## 本地测试
 
